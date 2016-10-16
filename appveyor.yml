@@ -1,6 +1,9 @@
 image: Windows Server 2012 R2
 
 build_script:
-  - sh -lc "uname -a"
+  - bash -c "uname"
+  - bash -c "ls"
+  - bash -c "pwd"
   - mvn clean install --batch-mode
+
 
