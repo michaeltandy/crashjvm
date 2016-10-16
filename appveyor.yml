@@ -12,3 +12,5 @@ build_script:
 #/link /DLL /out:target\classes\nativelibs\amd64\CrashJvm.dll
   - mvn install --batch-mode
 
+test:
+  - bash test.sh
