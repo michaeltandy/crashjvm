@@ -31,7 +31,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.${project.basedir}}</workingDirectory>
+                            <workingDirectory>${project.basedir}</workingDirectory>
                             <executable>bash</executable>
                             <arguments>
                                 <argument>buildlibs.sh</argument>
