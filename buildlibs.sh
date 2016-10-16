@@ -21,6 +21,12 @@ elif [[ "$UNAME_STR" == "Darwin" ]]; then
   gcc -arch i386 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
   gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-compiler-version.txt
 
+elif [[ "$UNAME_STR" == "MSYS_NT-6.3" ]]; then
+  ls $JAVA_HOME
+  ls $JAVA_HOME/include
+
+  gcc -shared -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/CrashJvm.dll" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+
 else
   echo "Didn't recognise $UNAME_STR" >&2
   exit 1
