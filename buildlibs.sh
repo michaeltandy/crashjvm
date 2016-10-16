@@ -2,6 +2,12 @@
 
 set -e
 
+if [ -z "$MAVEN_PROJECTBASEDIR" ]; then
+  echo "MAVEN_PROJECTBASEDIR must be set, but it isn't." >&2
+  exit 1
+fi
+  
+
 env
 mkdir -p $MAVEN_PROJECTBASEDIR/target/classes/amd64
 mkdir -p $MAVEN_PROJECTBASEDIR/target/classes/x86
