@@ -4,7 +4,7 @@ image: Windows Server 2012 R2
 #  - mingw-get install gcc
 
 build_script:
-  - bash -c "cl"
+  - bash -c "g++ --help"
   - mvn clean install --batch-mode
 
 
