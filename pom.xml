@@ -31,8 +31,11 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}</workingDirectory>
-                            <executable>../buildlibs.sh</executable>
+                            <workingDirectory>${project.${project.basedir}}</workingDirectory>
+                            <executable>sh</executable>
+                            <arguments>
+                                <argument>buildlibs.sh</argument>
+                            </arguments>
                             <environmentVariables>
                                 <MAVEN_PROJECTBASEDIR>${project.basedir}</MAVEN_PROJECTBASEDIR>
                             </environmentVariables>
