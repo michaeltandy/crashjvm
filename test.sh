@@ -23,3 +23,4 @@ if [ $lastStatus -ne 134 ]; then
   exit $lastStatus
 fi
 
+echo -e "\n\nTest successful - saw expected crashes!" >&2

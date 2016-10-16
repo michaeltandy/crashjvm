@@ -32,8 +32,8 @@
                         </goals>
                         <configuration>
                             <workingDirectory>${project.build.directory}</workingDirectory>
-                            <executable>gcc</executable>
-                            <arguments>
+                            <executable>../buildlibs.sh</executable>
+                            <!--<arguments>
                                 <argument>-shared</argument>
                                 <argument>-fPIC</argument>
                                 <argument>-I</argument>
@@ -45,7 +45,7 @@
                                 <argument>${project.build.sourceDirectory}/uk/me/mjt/CrashJvm.c</argument>
                                 <argument>-o</argument>
                                 <argument>${project.build.directory}/classes/libCrashJvm.so</argument>
-                            </arguments>
+                            </arguments>-->
                         </configuration>
                     </execution>
                 </executions>

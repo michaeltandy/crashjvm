@@ -2,6 +2,10 @@ language: java
 jdk:
 - oraclejdk8
 
+os:
+- linux
+- osx
+
 script:
 - mvn clean install
 - ./test-build-reproducible.sh

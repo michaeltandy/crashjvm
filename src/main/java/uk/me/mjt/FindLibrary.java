@@ -104,13 +104,42 @@ public class FindLibrary {
     
     private static File extractNativeLibAsTempFile(String libraryName) throws IOException {
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
-        Path tempFile = Files.createTempFile("native", "-"+libraryFilename, rwx);
+        Path tempFile = Files.createTempFile("native", "-javalib", rwx);
         extractResourceTo("/"+libraryFilename, tempFile);
         return tempFile.toFile();
     }
     
     private static String getPlatformSpecificLibraryFilename(String libraryName) {
-        return "lib"+libraryName+".so"; // TODO
+        String os = System.getProperty("os.name").toLowerCase();
+        String arch = getArch();
+        // TODO support for 32 bit / 64 bit / ARM
+        if ("mac os x".equals(os)) {
+            return arch+"/lib"+libraryName+".jnilib";
+        } else if ("linux".equals(os)) {
+            return arch+"/lib"+libraryName+".so";
+        } else if (os.contains("windows")) {
+            return arch+"/"+libraryName+".dll";
+        } else {
+            throw new RuntimeException("Unrecognised OS, "+os);
+        }
+    }
+    
+    private static String getArch() {
+        // See https://stackoverflow.com/a/36926327/1367431
+        switch(System.getProperty("os.arch").toLowerCase()) {
+            case "x86":
+            case "i386":
+            case "i486":
+            case "i586":
+            case "i686":
+                return "x86";
+            case "x86_64":
+            case "amd64":
+                return "amd64";
+            default:
+                throw new RuntimeException("Unrecognised arch, "
+                        +System.getProperty("os.arch"));
+        }
     }
     
     private static void extractResourceTo(String resource, Path destination) throws IOException {
@@ -125,6 +154,9 @@ public class FindLibrary {
         File f = new File(getThisClassUrl()
                 .replaceFirst(thisFilePath+"$", "/"+libraryFilename)
                 .replaceFirst("^file:", ""));
+        if (!f.isFile()) {
+            System.err.println("Expected to find library at " + f + " but it's not there?");
+        }
         require(f.isFile());
         return f;
     }
