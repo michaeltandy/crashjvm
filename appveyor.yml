@@ -1,10 +1,10 @@
 image: Windows Server 2012 R2
 
-#install:
-#  - mingw-get install gcc
+install:
+  - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
-  - bash -c "g++ --help"
+  - bash -c "gcc --version"
   - mvn clean install --batch-mode
 
 
