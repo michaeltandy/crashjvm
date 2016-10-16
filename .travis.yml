@@ -1,6 +1,4 @@
 language: java
-jdk:
-- oraclejdk8
 
 os:
 - linux
@@ -8,6 +6,6 @@ os:
 
 script:
 - mvn clean install
-- ./test-build-reproducible.sh
+#- ./test-build-reproducible.sh
 - ./test.sh
 - shasum -a 512 target/crashjvm-*.jar
