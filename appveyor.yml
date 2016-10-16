@@ -5,9 +5,7 @@ image: Windows Server 2012 R2
 
 build_script:
   - bash -c "ls /C/MinGW/bin"
-  - bash -c "compgen -c | grep gcc"
-  - bash -c "find / -name '\*gcc\*'"
-  - bash -c "gcc --version"
+  - bash -c "/C/MinGW/bin/gcc.exe --version"
   - mvn clean install --batch-mode
 
 
