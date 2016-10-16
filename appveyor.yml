@@ -1,9 +1,11 @@
 image: Windows Server 2012 R2
 
+install:
+  - mingw-get install gcc
+
 build_script:
-  - bash -c "uname"
-  - bash -c "ls"
-  - bash -c "pwd"
+  - bash -c "uname -a"
+  - bash -c "gcc -version"
   - mvn clean install --batch-mode
 
 
