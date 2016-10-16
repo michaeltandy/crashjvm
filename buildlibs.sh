@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 if [ -z "$MAVEN_PROJECTBASEDIR" ]; then
@@ -7,10 +6,9 @@ if [ -z "$MAVEN_PROJECTBASEDIR" ]; then
   exit 1
 fi
 
-env
+#env
 mkdir -p $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64
 mkdir -p $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86
-
 
 UNAME_STR=$(uname);
 
@@ -19,8 +17,8 @@ if [[ "$UNAME_STR" == "Linux" ]]; then
   gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/linux-compiler-version.txt
 
 elif [[ "$UNAME_STR" == "Darwin" ]]; then
-  gcc -arch x86_64 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/nativelibs/classes/amd64/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
-  gcc -arch i386 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/nativelibs/classes/x86/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+  gcc -arch x86_64 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+  gcc -arch i386 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
   gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-compiler-version.txt
 
 else

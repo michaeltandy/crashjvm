@@ -18,5 +18,6 @@ deploy:
   local-dir: target/classes/nativelibs/
   upload-dir: crashjvm
   region: eu-west-1
+  skip_cleanup: true
   on:
     repo: michaeltandy/crashjvm
