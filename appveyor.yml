@@ -4,6 +4,7 @@ install:
   - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
+  - bash -c "compgen -c | grep gcc"
   - bash -c "gcc --version"
   - mvn clean install --batch-mode
 
