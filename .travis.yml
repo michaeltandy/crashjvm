@@ -1,11 +1,22 @@
 language: java
-
 os:
 - linux
 - osx
 
 script:
 - mvn clean install
-#- ./test-build-reproducible.sh
-- ./test.sh
-- shasum -a 512 target/crashjvm-*.jar
+- "./test.sh"
+- echo "sha-512 of native libs just built:"
+- shasum -a 512 target/classes/nativelibs/*/*
+
+deploy:
+  provider: s3
+  access_key_id: AKIAJRCNBYUFGBL6TFGQ
+  secret_access_key:
+    secure: CV5TO0pVgSO3KA9psdu7f90inkIgzbZbNe4UKDMd1C3VfHNRpMny3/NMZ8/SoKI94JvhPjHqx5dZpNaEuB/IMC9LH+moJ3+KvoAAn9shS4rcCArXyXUk3b9LiVHj5Zla6ogBQMVDIfpJbrgoS7+0simCIM3dHfeVu7f+NVI0IEvVZXo4phHvjfLIuvnb5viB22dhfYf7tss+l25Yk4suIrxDUBaPMoxF93iXf0QiMzccVpHDRU83YRWjDAkWJEUBnFyysnvg9a9tOSFYDZWD0KL1fbMp9NyTcIl0y7+Ue4JxtPKzLmhSl6uL3RLR2+kkKRBZsGVEZNtLOw264v7qAbqBW2LsCxer4ba9uwzu/wNtrhEgh9wt9Svz61Y7ITk/CSq6KvUnXz5qoJEKxeJumzgCnxf4wBvyhDtn0PSBaj8dqHk6cCmPyoWLMmMKQuKDog3q3rNh0ih81JFo0S4E2xAWN5zWYyhXHR7hXM+zZinSaM5yoc+tDqmZZWn376SAPEZvtZGmuaXmzYjz68bt+YIYZAT2BEnMsOZnAPOIpyloH7P4/7gfKvy3j8O7+D9UF33XhSllFE9GHOvdhXREqvXrKaTJa3WYzFAhvxv3r8mioOpHOMrtwC8V1tnhqE5/1aY30O953u5ypTXG4mqsaM2XwU+uelHQafi6K4FM9CE=
+  bucket: artifacts.mjt.me.uk
+  local-dir: target/classes/nativelibs/
+  upload-dir: crashjvm
+  region: eu-west-1
+  on:
+    repo: michaeltandy/crashjvm

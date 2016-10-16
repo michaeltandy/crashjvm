@@ -105,7 +105,7 @@ public class FindLibrary {
     private static File extractNativeLibAsTempFile(String libraryName) throws IOException {
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
         Path tempFile = Files.createTempFile("native", "-javalib", rwx);
-        extractResourceTo("/"+libraryFilename, tempFile);
+        extractResourceTo("/nativelibs/"+libraryFilename, tempFile);
         return tempFile.toFile();
     }
     
@@ -152,7 +152,7 @@ public class FindLibrary {
         require(!isThisAJarFile());
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
         File f = new File(getThisClassUrl()
-                .replaceFirst(thisFilePath+"$", "/"+libraryFilename)
+                .replaceFirst(thisFilePath+"$", "/nativelibs/"+libraryFilename)
                 .replaceFirst("^file:", ""));
         if (!f.isFile()) {
             System.err.println("Expected to find library at " + f + " but it's not there?");
