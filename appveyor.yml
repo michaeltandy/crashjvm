@@ -4,12 +4,9 @@ image: Windows Server 2012 R2
 #  - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - cl.exe
-  - bash -c "ls /c/projects/crashjvm/src/main/java/uk/me/mjt/"
-  - bash -c "/C/MinGW/bin/gcc.exe --version"
   - bash -c "mkdir -p /c/projects/crashjvm/target/classes/nativelibs/amd64/"
-  - C:\MinGW\bin\gcc.exe c:\projects\crashjvm\src\main\java\uk\me\mjt\CrashJvm.c
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
+  - cl.exe -o target\classes\nativelibs\amd64\CrashJvm.dll src\main\java\uk\me\mjt\CrashJvm.c /I D:\jdk1.5.0\include /I $JAVA_HOME\include\win32 /link /DLL
   - mvn clean install --batch-mode
 
 
