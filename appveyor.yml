@@ -7,7 +7,7 @@ build_script:
   - bash -c "pwd"
   - bash -c "/C/MinGW/bin/gcc.exe --version"
   - bash -c "mkdir -p /c/projects/crashjvm/target/classes/nativelibs/amd64/"
-  - bash -c "/C/MinGW/bin/gcc.exe -shared -o /c/projects/crashjvm/target/classes/nativelibs/amd64/CrashJvm.dll -I /C/Progra~1/Java/jdk1.8.0/include -I /C/Progra~1/Java/jdk1.8.0/include/win32 /c/projects/crashjvm/src/main/java/uk/me/mjt/CrashJvm.c"
+  - bash -c "/C/MinGW/bin/gcc.exe -o /c/projects/crashjvm/target/classes/nativelibs/amd64/CrashJvm.dll /c/projects/crashjvm/src/main/java/uk/me/mjt/CrashJvm.c"
   - mvn clean install --batch-mode
 
 
