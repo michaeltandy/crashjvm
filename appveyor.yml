@@ -4,10 +4,7 @@ image: Windows Server 2012 R2
 #  - mingw-get install gcc
 
 build_script:
-  - bash -c "uname -a"
-  - bash -c "cygcheck -s -v"
-  - bash -c "mingw-get install gcc"
-  - bash -c "gcc -version"
+  - bash -c "cl"
   - mvn clean install --batch-mode
 
 
