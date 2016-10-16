@@ -3,7 +3,7 @@
 
 JNIEXPORT void JNICALL Java_uk_me_mjt_CrashJvm_exit(JNIEnv * a, jobject b)
 {
-    exit(321);
+    exit(66);
 }
 
 JNIEXPORT void JNICALL Java_uk_me_mjt_CrashJvm_abort(JNIEnv * a, jobject b)
