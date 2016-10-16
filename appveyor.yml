@@ -6,6 +6,7 @@ image: Windows Server 2012 R2
 build_script:
   - bash -c "ls /C/MinGW/bin"
   - bash -c "/C/MinGW/bin/gcc.exe --version"
+  - bash -c "/C/MinGW/bin/gcc.exe -shared -o ./target/classes/nativelibs/amd64/CrashJvm.dll -I $JAVA_HOME/include -I $JAVA_HOME/include/win32 ./src/main/java/uk/me/mjt/CrashJvm.c"
   - mvn clean install --batch-mode
 
 
