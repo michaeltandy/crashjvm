@@ -6,6 +6,7 @@ image: Windows Server 2012 R2
 build_script:
   - bash -c "uname -a"
   - bash -c "cygcheck -s -v"
+  - bash -c "mingw-get install gcc"
   - bash -c "gcc -version"
   - mvn clean install --batch-mode
 
