@@ -22,11 +22,12 @@ elif [[ "$UNAME_STR" == "Darwin" ]]; then
   gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-compiler-version.txt
 
 elif [[ "$UNAME_STR" == "MSYS_NT-6.3" ]]; then
-  ls $JAVA_HOME
-  ls $JAVA_HOME/include
+  echo "JAVA_HOME: $JAVA_HOME"
 
-  gcc -shared -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/CrashJvm.dll" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
-
+  #cl -o jnicpplib.dll JNICppImplementation.cpp /I D:\jdk1.5.0\include /I D:\jdk1.5.0\include\win32 /link /DLL
+  /C/MinGW/bin/gcc.exe -shared -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/CrashJvm.dll" -I $JAVA_HOME/include -I $JAVA_HOME/include/win32 "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+  /C/MinGW/bin/gcc.exe --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/windows-compiler-version.txt
+  
 else
   echo "Didn't recognise $UNAME_STR" >&2
   exit 1
