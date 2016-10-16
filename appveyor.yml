@@ -10,6 +10,5 @@ build_script:
   - copy CrashJvm.dll target\classes\nativelibs\amd64\
   - dir target\classes\nativelibs\amd64\
 #/link /DLL /out:target\classes\nativelibs\amd64\CrashJvm.dll
-  - mvn clean install --batch-mode
-
+  - mvn install --batch-mode
 
