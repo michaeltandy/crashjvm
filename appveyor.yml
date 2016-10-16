@@ -4,7 +4,7 @@ image: Windows Server 2012 R2
 #  - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
-  - bash -c "pwd"
+  - cl.exe
   - bash -c "ls /c/projects/crashjvm/src/main/java/uk/me/mjt/"
   - bash -c "/C/MinGW/bin/gcc.exe --version"
   - bash -c "mkdir -p /c/projects/crashjvm/target/classes/nativelibs/amd64/"
