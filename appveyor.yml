@@ -6,7 +6,9 @@ image: Windows Server 2012 R2
 build_script:
   - bash -c "mkdir -p /c/projects/crashjvm/target/classes/nativelibs/amd64/"
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 /link /DLL /out:target\classes\nativelibs\amd64\CrashJvm.dll
+  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -FeCrashJvm.dll -MD -LD
+  - dir
+#/link /DLL /out:target\classes\nativelibs\amd64\CrashJvm.dll
   - mvn clean install --batch-mode
 
 
