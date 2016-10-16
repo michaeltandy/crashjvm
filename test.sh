@@ -23,7 +23,3 @@ if [ $lastStatus -ne 134 ]; then
   exit $lastStatus
 fi
 
-echo -e "\n\nTests all as expected! SHA1 checksum of build artifact:"
-shasum -a 1 target/crashjvm-*.jar
-echo "SHA512 checksum of same:"
-shasum -a 512 target/crashjvm-*.jar

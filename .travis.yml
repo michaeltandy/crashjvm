@@ -4,4 +4,6 @@ jdk:
 
 script:
 - mvn clean install
+- ./test-build-reproducible.sh
 - ./test.sh
+- shasum -a 512 target/crashjvm-*.jar
