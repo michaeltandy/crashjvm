@@ -4,15 +4,14 @@ image: Windows Server 2012 R2
 #  - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
-  - mkdir amd64
   - mkdir x86
-  - echo "Tools for x86"
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
-  - set
-  - echo "Tools for x64"
+  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Fex86\CrashJvm.dll -MD -LD
+
+  - mkdir amd64
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - set
   - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Feamd64\CrashJvm.dll -MD -LD
+
   - mvn install --batch-mode
 
 test_script:
