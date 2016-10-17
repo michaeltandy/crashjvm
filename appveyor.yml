@@ -19,6 +19,7 @@ test_script:
 
 artifacts:
   - path: amd64\CrashJvm.dll
+  - path: x86\CrashJvm.dll
 
 deploy:
     # Amazon S3 deployment provider settings
@@ -29,6 +30,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: amd64\CrashJvm.dll
+    artifact: amd64\CrashJvm.dll, x86\CrashJvm.dll
     set_public: false
 
