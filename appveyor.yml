@@ -15,6 +15,9 @@ build_script:
 test_script:
   - bash test.sh
 
+artifacts:
+  - path: target/classes/nativelibs/**
+
 deploy:
     # Amazon S3 deployment provider settings
   - provider: S3
