@@ -18,7 +18,7 @@ fi
 
 java -cp target/jar\ with\ filename\ spaces.jar uk.me.mjt.CrashJvm segfault
 lastStatus=$?
-if [ $lastStatus -ne 134 ]; then
+if [ $lastStatus -ne 134 ] && [ $lastStatus -ne 1 ]; then
   echo "Wrong exit code calling segfault? Saw $lastStatus" >&2
   exit $lastStatus
 fi
