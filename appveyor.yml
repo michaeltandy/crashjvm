@@ -16,7 +16,7 @@ test_script:
   - bash test.sh
 
 artifacts:
-  - path: target/classes/nativelibs/**
+  - path: target\classes\nativelibs\**\*.dll
 
 deploy:
     # Amazon S3 deployment provider settings
@@ -27,6 +27,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: target/classes/nativelibs/**
+    artifact: target\classes\nativelibs\**\*.dll
     set_public: false
 
