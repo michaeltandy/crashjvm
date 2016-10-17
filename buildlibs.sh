@@ -23,7 +23,9 @@ elif [[ "$UNAME_STR" == "Darwin" ]]; then
 
 elif [[ "$UNAME_STR" == "MSYS_NT-6.3" ]]; then
   echo "Hopefully this is running on appveyor, and the libraries have already been built!"
+  cp $MAVEN_PROJECTBASEDIR/amd64/CrashJvm.dll $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64
   
+
 else
   echo "Didn't recognise $UNAME_STR" >&2
   exit 1

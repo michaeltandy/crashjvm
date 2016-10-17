@@ -4,19 +4,16 @@ image: Windows Server 2012 R2
 #  - C:\MinGW\bin\mingw-get install gcc
 
 build_script:
-  - bash -c "mkdir -p /c/projects/crashjvm/target/classes/nativelibs/amd64/"
+  - mkdir amd64
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -FeCrashJvm.dll -MD -LD
-  - copy CrashJvm.dll target\classes\nativelibs\amd64\
-  - dir target\classes\nativelibs\amd64\
-#/link /DLL /out:target\classes\nativelibs\amd64\CrashJvm.dll
+  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Feamd64\CrashJvm.dll -MD -LD
   - mvn install --batch-mode
 
 test_script:
   - bash test.sh
 
 artifacts:
-  - path: target\classes\nativelibs\**\*.dll
+  - path: amd64\CrashJvm.dll
 
 deploy:
     # Amazon S3 deployment provider settings
@@ -27,6 +24,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: target\classes\nativelibs\.*\CrashJvm.dll
+    artifact: amd64\CrashJvm.dll
     set_public: false
 
