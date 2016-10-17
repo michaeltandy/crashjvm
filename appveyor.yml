@@ -6,20 +6,23 @@ image: Windows Server 2012 R2
 build_script:
   - mkdir x86
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
-  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Fex86\CrashJvm.dll -MD -LD
+  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Fex86\CrashJvm.dll -MD -LD > windows-compiler-version.txt
 
   - mkdir amd64
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Feamd64\CrashJvm.dll -MD -LD
+  - cl.exe src\main\java\uk\me\mjt\CrashJvm.c /I %JAVA_HOME%\include /I %JAVA_HOME%\include\win32 -Feamd64\CrashJvm.dll -MD -LD >> windows-compiler-version.txt
 
   - mvn install --batch-mode
 
 test_script:
   - bash test.sh
+  - CertUtil -hashfile amd64\CrashJvm.dll SHA512
+  - CertUtil -hashfile amd64\CrashJvm.dll SHA512
 
 artifacts:
   - path: amd64\CrashJvm.dll
   - path: x86\CrashJvm.dll
+  - path: windows-compiler-version.txt
 
 deploy:
     # Amazon S3 deployment provider settings
@@ -30,6 +33,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: amd64\CrashJvm.dll, x86\CrashJvm.dll
+    artifact: amd64\CrashJvm.dll, x86\CrashJvm.dll, windows-compiler-version.txt
     set_public: false
 
