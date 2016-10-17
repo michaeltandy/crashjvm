@@ -14,3 +14,16 @@ build_script:
 
 test_script:
   - bash test.sh
+
+deploy:
+    # Amazon S3 deployment provider settings
+  - provider: S3
+    access_key_id: AKIAI7AXAB7QKGPVNYVA
+    secret_access_key:
+      secure: snxWY4w58Q5StGc6YVIw4MQe3BeqV0eAJ5nANkccZzC70PumRa+fGkBEsg960bFo
+    bucket: artifacts.mjt.me.uk
+    region: eu-west-1
+    folder: crashjvm
+    artifact: target/classes/nativelibs/*
+    set_public: false
+
