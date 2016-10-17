@@ -104,8 +104,8 @@ public class FindLibrary {
     
     private static File extractNativeLibAsTempFile(String libraryName) throws IOException {
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
-        Path tempFile = Files.createTempFile("native", ".dll");
-        extractResourceTo("/nativelibs/"+libraryFilename, tempFile);
+        Path tempFile = Files.createTempFile("native", "-"+libraryFilename);
+        extractResourceTo("/nativelibs/"+getArch()+"/"+libraryFilename, tempFile);
         File extractedFile = tempFile.toFile();
         extractedFile.setExecutable(true);
         return extractedFile;
@@ -113,14 +113,13 @@ public class FindLibrary {
     
     private static String getPlatformSpecificLibraryFilename(String libraryName) {
         String os = System.getProperty("os.name").toLowerCase();
-        String arch = getArch();
         // TODO support for 32 bit / 64 bit / ARM
         if ("mac os x".equals(os)) {
-            return arch+"/lib"+libraryName+".jnilib";
+            return "lib"+libraryName+".jnilib";
         } else if ("linux".equals(os)) {
-            return arch+"/lib"+libraryName+".so";
+            return "lib"+libraryName+".so";
         } else if (os.contains("windows")) {
-            return arch+"/"+libraryName+".dll";
+            return libraryName+".dll";
         } else {
             throw new RuntimeException("Unrecognised OS, "+os);
         }
@@ -154,7 +153,7 @@ public class FindLibrary {
         require(!isThisAJarFile());
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
         File f = new File(getThisClassUrl()
-                .replaceFirst(thisFilePath+"$", "/nativelibs/"+libraryFilename)
+                .replaceFirst(thisFilePath+"$", "/nativelibs/"+getArch()+"/"+libraryFilename)
                 .replaceFirst("^file:", ""));
         if (!f.isFile()) {
             System.err.println("Expected to find library at " + f + " but it's not there?");
