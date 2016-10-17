@@ -106,7 +106,9 @@ public class FindLibrary {
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
         Path tempFile = Files.createTempFile("native", "-javalib");
         extractResourceTo("/nativelibs/"+libraryFilename, tempFile);
-        return tempFile.toFile();
+        File extractedFile = tempFile.toFile();
+        extractedFile.setExecutable(true);
+        return extractedFile;
     }
     
     private static String getPlatformSpecificLibraryFilename(String libraryName) {
