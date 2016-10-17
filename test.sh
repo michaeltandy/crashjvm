@@ -11,7 +11,7 @@ fi
 
 java -cp target/jar\ with\ filename\ spaces.jar uk.me.mjt.CrashJvm abort
 lastStatus=$?
-if [ $lastStatus -ne 134 ]; then
+if [ $lastStatus -ne 134 ] && [ $lastStatus -ne 127 ]; then
   echo "Wrong exit code calling abort? Saw $lastStatus" >&2
   exit $lastStatus
 fi
