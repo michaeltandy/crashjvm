@@ -104,7 +104,7 @@ public class FindLibrary {
     
     private static File extractNativeLibAsTempFile(String libraryName) throws IOException {
         String libraryFilename = getPlatformSpecificLibraryFilename(libraryName);
-        Path tempFile = Files.createTempFile("native", "-javalib");
+        Path tempFile = Files.createTempFile("native", ".dll");
         extractResourceTo("/nativelibs/"+libraryFilename, tempFile);
         File extractedFile = tempFile.toFile();
         extractedFile.setExecutable(true);
