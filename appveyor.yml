@@ -24,6 +24,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: c:\projects\crashjvm\target\classes\nativelibs\amd64\CrashJvm.dll
+    artifact: target/classes/nativelibs/**
     set_public: false
 
