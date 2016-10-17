@@ -24,6 +24,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: target/classes/nativelibs/*
+    artifact: target/classes/nativelibs/.*
     set_public: false
 
