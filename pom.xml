@@ -43,20 +43,30 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--<plugin>
-                <groupId>io.github.zlika</groupId>
-                <artifactId>reproducible-build-maven-plugin</artifactId>
-                <version>0.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>strip-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
-            
         </plugins>
     </build>
+    
+    <!-- Data below does nothing, but is required by maven central -->
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Crashes the JVM. 
+        Use it to ensure your test runners handle crashes gracefully!</description>
+    <url>https://github.com/michaeltandy/crashjvm</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Michael Tandy</name>
+            <email>pom@mjt.me.uk</email>
+            <url>https://www.mjt.me.uk</url>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/michaeltandy/crashjvm.git</connection>
+        <developerConnection>scm:git:ssh://github.com:michaeltandy/crashjvm.git</developerConnection>
+        <url>https://github.com/michaeltandy/crashjvm</url>
+    </scm>
 </project>
