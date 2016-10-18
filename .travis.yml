@@ -3,8 +3,11 @@ os:
 - linux
 - osx
 
+install:
+- if [[ $(uname) == "Linux" ]]; then sudo apt-get -y install libc6-dev-i386; fi
+
 script:
-- mvn clean install
+- mvn clean install --batch-mode
 - "./test.sh"
 - echo "sha-512 of native libs just built:"
 - shasum -a 512 target/classes/nativelibs/*/*
