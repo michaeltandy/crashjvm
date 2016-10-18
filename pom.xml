@@ -38,6 +38,7 @@
                             </arguments>
                             <environmentVariables>
                                 <MAVEN_PROJECTBASEDIR>${project.basedir}</MAVEN_PROJECTBASEDIR>
+                                <RELEASEBUILD>${releasebuild}</RELEASEBUILD>
                             </environmentVariables>
                         </configuration>
                     </execution>

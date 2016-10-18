@@ -12,8 +12,13 @@ mkdir -p $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86
 
 UNAME_STR=$(uname);
 
-if [[ "$UNAME_STR" == "Linux" ]]; then
-  gcc -shared -fPIC -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/libCrashJvm.so" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+if [[ "$RELEASEBUILD" == "true" ]]; then
+  echo "Performing release build, using native libraries collected from CI runners."
+  cp -r $MAVEN_PROJECTBASEDIR/nativelibs/* $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/
+
+elif [[ "$UNAME_STR" == "Linux" ]]; then
+  gcc -shared -m64 -fPIC -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/libCrashJvm.so" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+  gcc -shared -m32 -fPIC -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86/libCrashJvm.so" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
   gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/linux-compiler-version.txt
 
 elif [[ "$UNAME_STR" == "Darwin" ]]; then
