@@ -18,13 +18,16 @@ if [[ "$RELEASEBUILD" == "true" ]]; then
 
 elif [[ "$UNAME_STR" == "Linux" ]]; then
   gcc -shared -m64 -fPIC -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/libCrashJvm.so" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
+  # If the line below fails, run sudo apt-get -y install libc6-dev-i386
   gcc -shared -m32 -fPIC -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86/libCrashJvm.so" -I $JAVA_HOME/include -I $JAVA_HOME/include/linux "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
-  gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/linux-compiler-version.txt
+  gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/linux-native-info.txt
+  echo "Travis job $TRAVIS_JOB_ID" >> $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/linux-native-info.txt
 
 elif [[ "$UNAME_STR" == "Darwin" ]]; then
   gcc -arch x86_64 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/amd64/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
   gcc -arch i386 -dynamiclib -o "$MAVEN_PROJECTBASEDIR/target/classes/nativelibs/x86/libCrashJvm.jnilib" -I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ "$MAVEN_PROJECTBASEDIR/src/main/java/uk/me/mjt/CrashJvm.c"
-  gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-compiler-version.txt
+  gcc --version > $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-native-info.txt
+  echo "Travis job $TRAVIS_JOB_ID" >> $MAVEN_PROJECTBASEDIR/target/classes/nativelibs/osx-native-info.txt
 
 elif [[ "$UNAME_STR" == "MSYS_NT-6.3" ]]; then
   echo "Hopefully this is running on appveyor, and the libraries have already been built!"
