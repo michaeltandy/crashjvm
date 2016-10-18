@@ -28,7 +28,7 @@ test_script:
 artifacts:
   - path: amd64\CrashJvm.dll
   - path: x86\CrashJvm.dll
-  - path: windows-compiler-version.txt
+  - path: windows-native-info.txt
 
 deploy:
     # Amazon S3 deployment provider settings
@@ -39,6 +39,6 @@ deploy:
     bucket: artifacts.mjt.me.uk
     region: eu-west-1
     folder: crashjvm
-    artifact: amd64\CrashJvm.dll, x86\CrashJvm.dll, windows-compiler-version.txt
+    artifact: amd64\CrashJvm.dll, x86\CrashJvm.dll, windows-native-info.txt
     set_public: false
 
