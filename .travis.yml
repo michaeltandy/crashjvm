@@ -1,7 +1,7 @@
 language: java
 os:
 - linux
-- osx
+#- osx # Travis OS X builds are slooooow, so disable them for now.
 
 install:
 - if [[ $(uname) == "Linux" ]]; then sudo apt-get -y install libc6-dev-i386; fi
