@@ -33,11 +33,13 @@ public class ExampleClass {
 ## Platforms supported
 Thanks to Travis and Appveyor, native libraries are included for the following platforms:
 
-|         | x86 64-bit        | x86 32-bit |
-|---------|-------------------|------------|
-| Linux   | Compiled & tested | Compiled   |
-| Mac     | Compiled & tested | Compiled   |
-| Windows | Compiled & tested | Compiled   |
+|                     | x86 64-bit                            | x86 32-bit |
+|---------------------|---------------------------------------|------------|
+| Linux               | Compiled & tested (on Ubuntu Trusty)  | Compiled   |
+| Mac                 | Compiled & tested (on 10.12.6)        | Compiled   |
+| Windows<sup>†</sup> | Compiled & tested (on Server 2012 R2) | Compiled   |
+
+<sup>†</sup>I've been informed that Windows NT 4.0 isn't compatible. Patches welcome, I suppose?
 
 If you know of a free CI service will allow me to compile and test on other CPU architectures, let me know and I'll integrate it.
 
